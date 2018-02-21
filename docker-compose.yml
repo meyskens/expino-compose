@@ -1,0 +1,43 @@
+version: '2'
+services:
+  admin:
+    image: expino/admin:amd64-latest
+    links:
+      - "influxdb:influxdb"
+    ports:
+      - "8080:8080"
+  api:
+    image: expino/api:amd64-latest
+    environment: 
+      - "INFLUXURL=http://influxdb:8086"
+    links:
+      - "influxdb:influxdb"
+    ports:
+      - "8090:8080"
+  ticker:
+    image: expino/ticker:amd64-latest
+    environment: 
+      - "INFLUXURL=http://influxdb:8086"
+    links:
+      - "influxdb:influxdb"
+    ports:
+      - "8070:8080"
+  grafana-proxy:
+    image: expino/grafana-proxy:amd64-latest
+    environment: 
+      - GRAFANAURL="http://grafana-multiarch:3000"
+      - USERNAME="admin"
+      - PASSWORD="admin"
+    links:
+      - "grafana-multiarch:grafana-multiarch"
+    ports:
+      - "8000:80"
+  kiosk:
+    image: expino/kiosk:amd64-latest
+    ports:
+      - "8010:80"
+  influxdb:
+    image: influxdb
+  grafana-multiarch:
+    image: maartje/grafana-multiarch:amd64-v4.6.3
+  
