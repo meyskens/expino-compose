@@ -7,4 +7,5 @@ Expino Kiosk Compose file
 3) done
 
 To shut down run `docker-compose down`  
-To reset start with `docker-compose up --forece-recreate`
+To reset start with `docker-compose up --force-recreate` 
+To get new versions `docker-compose pull`
