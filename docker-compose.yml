@@ -31,9 +31,9 @@ services:
   grafana-proxy:
     image: expino/grafana-proxy:amd64-latest
     environment: 
-      - GRAFANAURL="http://grafana-multiarch:3000"
-      - USERNAME="admin"
-      - PASSWORD="admin"
+      - "GRAFANAURL=http://grafana-multiarch:3000"
+      - "USERNAME=admin"
+      - "PASSWORD=admin"
     links:
       - "grafana-multiarch:grafana-multiarch"
     ports:
