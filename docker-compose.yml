@@ -14,6 +14,12 @@ services:
       - "influxdb:influxdb"
     ports:
       - "8090:8080"
+  randomizer:
+    image: expino/randomizer:amd64-latest
+    environment: 
+      - "ENDPOINT=http://api:8080"
+    links:
+      - "api:api"
   ticker:
     image: expino/ticker:amd64-latest
     environment: 
